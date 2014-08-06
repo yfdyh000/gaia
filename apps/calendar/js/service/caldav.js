@@ -914,7 +914,7 @@ Calendar.ns('Service').Caldav = (function() {
       return account && account.domain === 'https://caldav.calendar.yahoo.com';
     },
 
-    createEvent: function(account, calendar, event, callback) {
+    createEvent: function(account, calendar, event, options, callback) {
       var connection = this._createConnection(account);
       var vcalendar = new ICAL.Component('vcalendar');
       var icalEvent = new ICAL.Event();
@@ -946,6 +946,10 @@ Calendar.ns('Service').Caldav = (function() {
       event.url = url;
       event.icalComponent = vcalendar.toString();
 
+      if (!options.sync) {
+        return callback(null, event);
+      }
+
       req.put({}, event.icalComponent, function(err, data, xhr) {
         if (err) {
           callback(err);
@@ -957,7 +961,6 @@ Calendar.ns('Service').Caldav = (function() {
         // TODO: error handling
         callback(err, event);
       });
-
     },
 
     /**
@@ -969,7 +972,7 @@ Calendar.ns('Service').Caldav = (function() {
      * @param {Object} eventDetails details to update the event.
      *  unmodified parsed ical component. (VCALENDAR).
      */
-    updateEvent: function(account, calendar, eventDetails, callback) {
+    updateEvent: function(account, calendar, eventDetails, options, callback) {
       var connection = this._createConnection(account);
 
       var icalComponent = eventDetails.icalComponent;
@@ -1039,6 +1042,10 @@ Calendar.ns('Service').Caldav = (function() {
 
         var vcal = target.component.parent.toString();
         event.icalComponent = vcal;
+
+        if (!options.sync) {
+          return callback(null, event);
+        }
 
         req.put({}, vcal, function(err, data, xhr) {
           if (err) {
