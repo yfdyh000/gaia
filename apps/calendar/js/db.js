@@ -1,5 +1,5 @@
-/*jshint loopfunc: true */
-
+/* jshint loopfunc: true */
+/* global uuid */
 (function(window) {
   'use strict';
 

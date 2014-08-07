@@ -1,3 +1,4 @@
+/* global LazyLoader */
 Calendar.LoadConfig = (function() {
   'use strict';
 

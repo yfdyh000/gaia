@@ -1,3 +1,4 @@
+/* global AccessibilityHelper, LazyLoader, NotAmd, page */
 Calendar.App = (function(window) {
   'use strict';
 

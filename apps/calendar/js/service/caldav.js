@@ -1,3 +1,4 @@
+/* global uuid */
 Calendar.ns('Service').Caldav = (function() {
   'use strict';
 

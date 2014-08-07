@@ -1,5 +1,6 @@
 Calendar.isOnline = function() {
-  if (!navigator || ! 'onLine' in navigator) {
+  'use strict';
+  if (!navigator || !('onLine' in navigator)) {
     return false;
   }
 
