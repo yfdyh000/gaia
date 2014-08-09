@@ -1,4 +1,4 @@
-Calendar.ns('Provider').local = function() {
+Calendar.ns('Provider').local = (function() {
   'use strict';
   var exports = {};
 
@@ -13,7 +13,7 @@ Calendar.ns('Provider').local = function() {
   };
 
   exports.getAccount = function() {
-    return Promise.resolve({});
+    return Promise.resolve({ accountId: localCalendarId });
   };
 
   exports.findCalendars = function() {
@@ -49,4 +49,4 @@ Calendar.ns('Provider').local = function() {
   }
 
   return exports;
-};
+}());

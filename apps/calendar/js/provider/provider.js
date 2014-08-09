@@ -1,4 +1,4 @@
-Calendar.ns('Provider').provider = function() {
+Calendar.ns('Provider').provider = (function() {
   'use strict';
   var exports = {};
 
@@ -151,4 +151,4 @@ Calendar.ns('Provider').provider = function() {
   }
 
   return exports;
-};
+}());
