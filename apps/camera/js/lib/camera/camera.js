@@ -977,6 +977,7 @@ Camera.prototype.startRecording = function(options) {
       return;
     }
 
+
     // TODO: Callee should
     // pass in orientation
     var config = {
