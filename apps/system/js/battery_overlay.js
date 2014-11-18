@@ -1,6 +1,7 @@
 'use strict';
 /* global PowerSave */
 /* global ScreenManager */
+/* global SettingsHelper */
 
 (function(exports) {
 
@@ -86,7 +87,15 @@
             this.hide();
             this._wasEmptyBatteryNotificationDisplayed = false;
 
-            if (!this._screenOn) {
+            // a workaround for tablet device, bug 928884
+            if (this._settings) {
+              var disableScreenOn;
+              SettingsHelper('b2g.chargingchange_screenOn.disabled').get(
+                function(var){disableScreenOn = var}
+              );
+            }
+            console.log(disableScreenOn);
+            if (!this._screenOn && !disableScreenOn) {
               ScreenManager.turnScreenOn();
             }
           } else {
