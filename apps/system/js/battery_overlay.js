@@ -19,6 +19,7 @@
 
     _battery: window.navigator.battery,
     _notification: null,
+    _settings: window.navigator.mozSettings;
 
     getAllElements: function bm_getAllElements() {
       this.screen = document.getElementById('screen');
@@ -86,7 +87,17 @@
             this.hide();
             this._wasEmptyBatteryNotificationDisplayed = false;
 
-            if (!this._screenOn) {
+            // a workaround for tablet device, bug 928884
+            if (this._settings) {
+              var disableScreenOn;
+              var req = this._settings.createLock()
+              .get('b2g.chargingchange_screenOn.disabled');
+              req.onsuccess = function () {
+                disableScreenOn = req.result[0];
+              }
+            }
+            console.log(disableScreenOn);
+            if (!this._screenOn && !disableScreenOn) {
               ScreenManager.turnScreenOn();
             }
           } else {

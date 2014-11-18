@@ -3,4 +3,5 @@
  "wap.push.enabled": false,
  "layers.composer2d.enabled": false,
  "homescreen.appName": "homescreen"
+ "b2g.chargingchange_screenOn.disabled", true);
 }
