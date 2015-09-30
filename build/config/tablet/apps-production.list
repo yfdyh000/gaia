@@ -6,6 +6,7 @@ apps/clock
 apps/collection
 apps/communications
 apps/default_theme
+apps/download
 apps/email
 apps/fl
 apps/ftu
